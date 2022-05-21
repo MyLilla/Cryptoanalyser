@@ -1,40 +1,37 @@
 package ua.com.javaraush.shestakova.module1.operations;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Scanner;
 
 public class encryption {
 
-    public void operations() throws IOException {   // разобраться!!!
-
-        unСipher();
+    public void startEncryption () throws IOException{
+       stepsEncryption();
     }
-
-    private void unСipher() {
+    private void stepsEncryption() throws IOException {
 
         int key = getKey();
+        char[] textArray = getText();
+
         StringBuilder result = new StringBuilder();
-        int index;
 
-        String messege = "Иван - гроза всего диванаАААА";
-        char[] ar = messege.toLowerCase().toCharArray();
-
-        for (char x : ar) {
+        for (char letter : textArray) {
             for (int i = 0; i < alphabet.alphabetLength; i++) {
-                if (x == alphabet.ALPHABET[i]) {
+                if (letter == alphabet.ALPHABET[i]) {
                     if (i == alphabet.alphabetLength - 1) {
-                        x = alphabet.ALPHABET[0];
-                        result.append(x);
+                        letter = alphabet.ALPHABET[key -1];
+                        result.append(letter);
                         break;
                     } else if (i > (alphabet.alphabetLength - key - 1)) {
-                        index = i - alphabet.alphabetLength + key;
-                        x = alphabet.ALPHABET[index];
-                        result.append(x);
+                        int offset = (i + key) % alphabet.alphabetLength;
+                        result.append(alphabet.ALPHABET[offset]);
                         break;
                     } else if (i < (alphabet.alphabetLength - key)) {
-                        x = alphabet.ALPHABET[i + key];
-                        result.append(x);
+                        letter = alphabet.ALPHABET[i + key];
+                        result.append(letter);
                         break;
                     }
                 }
@@ -43,22 +40,27 @@ public class encryption {
         System.out.println(result);
     }
 
-    private Path getAddress() {
-        System.out.println("Please, write address your file: ");
+    private char [] getText() throws IOException {
 
-        Scanner scanner = new Scanner(System.in);
-        String addressPath = scanner.nextLine();
+       // System.out.println("Please, write address your file: ");
 
+       // Scanner scanner = new Scanner(System.in);
+       // String test = scanner.nextLine();
         String test = "D://Cryptoanalyser/test.txt";
 
-        Path path = Path.of(test);
-        // сюда добавить проверки пути
+        List<String> list = Files.readAllLines(Path.of(test));
 
-        return path;
+            StringBuilder builder1 = new StringBuilder();
+            for (String x : list) {
+                builder1.append(x);
+            }
+            char[] array = builder1.toString().toLowerCase().toCharArray();
+
+        return array;
     }
 
     private int getKey() {
-        System.out.println("Please, write key for your cipher: ");
+        System.out.println("Please, write KEY for your cipher: ");
         Scanner scanner = new Scanner(System.in);
 
         // сюда добавить проверки ключа
