@@ -13,7 +13,7 @@ public class decoding {
     }
     public void stepsDecoding () throws IOException {
 
-        int key = getKey();
+        int key = getKey.KEY;
         char[] textArray = getText();
         StringBuilder result = new StringBuilder();
 
@@ -56,14 +56,4 @@ public class decoding {
 
         return array;
     }
-
-    private int getKey() {
-        System.out.println("Please, write KEY for your cipher: ");
-        Scanner scanner = new Scanner(System.in);
-
-        // сюда добавить проверки ключа
-
-        return scanner.nextInt();
-    }
-
 }

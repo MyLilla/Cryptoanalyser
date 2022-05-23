@@ -3,17 +3,18 @@ package ua.com.javaraush.shestakova.module1.operations;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.Key;
 import java.util.List;
 import java.util.Scanner;
 
 public class encryption {
 
     public void startEncryption () throws IOException{
-       stepsEncryption();
+       key_encryption();
     }
-    private void stepsEncryption() throws IOException {
+    private void key_encryption() throws IOException {
 
-        int key = getKey();
+        int key = getKey.KEY;
         char[] textArray = getText();
 
         StringBuilder result = new StringBuilder();
@@ -59,13 +60,5 @@ public class encryption {
         return array;
     }
 
-    private int getKey() {
-        System.out.println("Please, write KEY for your cipher: ");
-        Scanner scanner = new Scanner(System.in);
-
-        // сюда добавить проверки ключа
-
-        return scanner.nextInt();
-    }
 
 }
