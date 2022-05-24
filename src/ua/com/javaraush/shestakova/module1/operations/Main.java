@@ -1,10 +1,13 @@
 package ua.com.javaraush.shestakova.module1.operations;
 
-public class Main {
-    public static void main(String[] args) {
+import java.io.IOException;
 
-        dialog dialog = new dialog();
-        dialog.welcome();
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        WriteText.addPath();
+        // Dialog dialog = new Dialog();
+        // dialog.welcome();
 
     }
 }
