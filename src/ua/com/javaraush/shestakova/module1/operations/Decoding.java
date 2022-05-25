@@ -5,8 +5,9 @@ public class Decoding {
 
             int key = GetKey.KEY;
             String text = GetText.getTextFromUser();
-
-            System.out.println(AlgorithmDecodingWithKey(text, key));
+            String result = AlgorithmDecodingWithKey(text, key);
+            System.out.println(result);
+            WriteText.startWriting(result);
     }
     public static String AlgorithmDecodingWithKey(String text, int key) {
 

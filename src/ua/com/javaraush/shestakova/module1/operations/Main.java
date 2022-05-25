@@ -1,13 +1,13 @@
 package ua.com.javaraush.shestakova.module1.operations;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        WriteText.addPath();
-        // Dialog dialog = new Dialog();
-        // dialog.welcome();
+        System.out.println("Hello! What operation you want to do? \n");
+        Dialog.welcome();
 
     }
 }

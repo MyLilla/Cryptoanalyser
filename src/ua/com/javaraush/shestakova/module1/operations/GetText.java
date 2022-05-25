@@ -10,11 +10,11 @@ public class GetText {
 
     public static String getTextFromUser() {
         try {
-           //  System.out.println("Please, write address your file: ");
+           System.out.println("Введите адрес документа : ");
 
             Scanner scanner = new Scanner(System.in);
-           // String test = scanner.nextLine();
-            String test = "D://Cryptoanalyser/test.txt";
+            String test = scanner.nextLine();
+            //  String test = "D://Cryptoanalyser/test.txt";
 
             List<String> list = Files.readAllLines(Path.of(test));
 

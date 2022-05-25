@@ -8,7 +8,7 @@ public class Coding {
         String result = AlgorithmCodingWithKey(text, key);
         System.out.println(result);
 
-        WriteText.addPath();
+        WriteText.startWriting(result);
     }
     public String AlgorithmCodingWithKey(String text, int key) {
 
