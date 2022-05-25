@@ -25,6 +25,9 @@ public class Dialog {
                     decoding.startDecoding();
                     break;
                 case 3:
+                    BruteForce bruteForce = new BruteForce();
+                    bruteForce.startBruteForce();
+                    break;
                 case 0:
                     System.exit(0);
                     break;

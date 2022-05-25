@@ -14,7 +14,7 @@ public class GetText {
 
             Scanner scanner = new Scanner(System.in);
             String test = scanner.nextLine();
-            //  String test = "D://Cryptoanalyser/test.txt";
+            //  String test = "D://Cryptoanalyser/result.txt";
 
             List<String> list = Files.readAllLines(Path.of(test));
 
