@@ -7,7 +7,8 @@ public class Main {
     public static void main(String[] args) {
 
        System.out.println("Hello! What operation you want to do? \n");
-        Dialog.welcome();
+       Dialog.welcome();
+        //StatisticalAnalysis.startAnalysis();
 
 
     }
