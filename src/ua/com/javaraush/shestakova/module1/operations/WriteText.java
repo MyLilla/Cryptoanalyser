@@ -8,54 +8,78 @@ import java.nio.file.Path;
 import java.util.Scanner;
 
 public class WriteText {
-
     public static void startWriting(String result) {
+
         try {
-            String way = getWay();
+            String way = getWayForWrite();
             FileOutputStream file = new FileOutputStream(way);
             file.write(result.getBytes(StandardCharsets.UTF_8));
-            file.close();
-
-            System.out.println("Файл сохранен в указанной папке");
-
+            if (!(way == null)) {
+                file.close();
+            }
+            System.out.println("Результат сохранен в файле: " + way);
         } catch (IOException | RuntimeException e) {
-            System.out.println("Вы ввели не корректный путь, повторите " + e);
+            System.out.println("Вы ввели не корректный путь."); // не могу обработать ниже..
+
         }
+
     }
 
-    public static String getWay() throws IOException {
+    public static String getWayForWrite() throws IOException {
 
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите адрес папки, куда сохранить полученный файл: ");
 
-        String pathUsers = scanner.nextLine();
-        checkPath(pathUsers);
-        System.out.println("Введите имя нового файла: ");
-        String nameFile = scanner.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        String WayDirectoryFromUser = scanner.nextLine();
+        if (WayDirectoryFromUser.isEmpty()) {
+            System.out.println("Имя папки не может быть пустым. Попрорбуй еще: ");
+            getWayForWrite();
+        }
 
-        String way = (pathUsers + "/" + nameFile + ".txt");
-        Path path = Files.createFile(Path.of(way));
-        System.out.println(path);
+        checkDirectory(WayDirectoryFromUser);
+
+        String nameFile = getNameNewFile().trim();
+
+        String way = (WayDirectoryFromUser + "/" + nameFile + ".txt");
+        Files.createFile(Path.of(way));
+
         return way;
     }
 
-    public static boolean checkPath(String pathUsers) {
-        Path wayToDirectory = Path.of(pathUsers);
-        System.out.println(wayToDirectory);
-        if (Files.isDirectory(wayToDirectory)) {
-            return true;
-        } else {
-            System.out.println("Указанный путь не является папкой или является системной папкой");
-            return false;
+    private static void checkDirectory(String pathUsers) throws IOException {
+        try {
+            Path wayToDirectory = Path.of(pathUsers);
+
+            if (!Files.isDirectory(wayToDirectory)) {
+                System.out.println("Указанный путь не является папкой. Попробуй еще: ");
+                getWayForWrite();
+            }
+
+        } catch (SecurityException ex) {
+            System.out.println("Доступ к файлу запрещен");
         }
     }
-}
 
-//        try {
-//            if (Files.newDirectoryStream(path).iterator().hasNext()) {
-//                System.out.println("Папка пустая.");
-//                System.exit(1);
-//            }
-//        } catch (IOException ex) {
-//            System.out.println("Произошла ошибка. Причина: " + ex.getMessage());
-//        }
+    private static String getNameNewFile() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите имя нового файла: ");
+        String nameFile = scanner.nextLine();
+
+        if (nameFile.isEmpty()) {
+            System.out.println("Имя файла не может быть пустым. Попрорбуй еще: ");
+            getNameNewFile();
+        }
+        if (nameFile.length() > 15) {
+            System.out.println("Слишком много буквю Попробуй еще: ");
+            getNameNewFile();
+        }
+        if (nameFile.contains(".") ||
+                nameFile.contains(" ") ||
+                nameFile.contains("/")) {
+            System.out.println("Название не должно содержать пробелов и знаков припинания. Попробуй еще: ");
+            getNameNewFile();
+        }
+        return nameFile;
+    }
+}

@@ -4,6 +4,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Dialog {
+
+    public static String INPUT_KEY_FROM_USER = "Введите число ключа: ";
     public static void ChoiceOfOperation() {
 
         System.out.println("Какую операцию нужно сделать? \n");
@@ -24,10 +26,13 @@ public class Dialog {
 
                 switch (numberOfOperation) {
                     case 1:
+                        System.out.println(INPUT_KEY_FROM_USER);
                         Coding.startCoding();
                         break;
                     case 2:
+                        System.out.println(INPUT_KEY_FROM_USER);
                         Decoding.startDecoding();
+                        System.out.println("Файл сохранен в указанной папке");
                         break;
                     case 3:
                         BruteForce.startBruteForce();
@@ -46,4 +51,3 @@ public class Dialog {
             }
         }
     }
-

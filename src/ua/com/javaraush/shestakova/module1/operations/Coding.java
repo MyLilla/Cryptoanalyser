@@ -3,16 +3,14 @@ package ua.com.javaraush.shestakova.module1.operations;
 public class Coding {
     public static void startCoding() {
 
-        int key = GetKey.KEY;
+        int key = GetKey.getTheKey();
         checkKeyForCoding(key);
 
-        String text = GetText.getWayFromFromUser();
+        String text = GetText.getTextFromUser();
         String result = AlgorithmCodingWithKey(text, key);
-        System.out.println(result);
 
         WriteText.startWriting(result);
     }
-
     public static String AlgorithmCodingWithKey(String text, int key) {
 
         StringBuilder result = new StringBuilder();
@@ -33,9 +31,9 @@ public class Coding {
 
     private static void checkKeyForCoding(int KEY) {
 
-        if (KEY > 100) {
-            System.out.println("Надежность кода не зависит от размера числа, так что можно поменьше: ");
-            GetKey.getTheKey();
+        if (Math.abs(KEY) > 100) {
+            System.out.println("Надежность кодировки не зависит от размера числа, так что можно поменьше: ");
+            startCoding();
         }
     }
 }

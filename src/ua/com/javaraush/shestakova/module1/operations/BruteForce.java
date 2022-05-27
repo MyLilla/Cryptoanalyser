@@ -4,24 +4,25 @@ public class BruteForce {
 
     public static void startBruteForce() {
 
-        String text = GetText.getWayFromFromUser(); // есть текст
-        checkToKeys(text);
+        String text = GetText.getTextFromUser();
+
+        String textResult = AlgorithmBruteForce(text);
+
+        WriteText.startWriting(textResult);
     }
+    private static String AlgorithmBruteForce(String text) {
+        for (int i = 0; i < alphabet.alphabetLength; i++) {
 
-    private static void checkToKeys(String text) {
-        for (int i = 0; i < alphabet.alphabetLength; i++) {           // проверка каждого ключа
-
-            String testText = Decoding.AlgorithmDecodingWithKey(text, i); // текст 1
-            boolean resultTest = checkForExit(testText); // проверка соответствий
+            String testText = Decoding.AlgorithmDecodingWithKey(text, i);
+            boolean resultTest = checkForExit(testText);
 
             if (resultTest) {
                 System.out.println("key = " + i);
-                WriteText.startWriting(testText);
-                break;
+                return testText;
             }
         }
+        return null;
     }
-
     private static boolean checkForExit(String testText) {
 
         String[] popular = new String[]{" и ", " на ", " в ", ". ", "не", "я"};

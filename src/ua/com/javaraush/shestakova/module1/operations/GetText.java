@@ -6,57 +6,65 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Scanner;
 
 public class GetText {
 
-    public static String getWayFromFromUser() {
+    public static String getTextFromUser() {
 
-        System.out.println("Введите адрес текстового документа в формате \"С://Новая папка/text.txt\": ");
-
-        // Test For Pull - request
+        System.out.println("Введите адрес текстового документа в формате \"С://Новая папка/test.txt\": ");
 
         Scanner scanner = new Scanner(System.in);
-        String text = scanner.nextLine();
-        //  String test = "D://Cryptoanalyser/result.txt";
+        String addressText = scanner.nextLine();
+        //  String addressText = "D://Cryptoanalyser/result2.txt";
 
-        Path path = getPath(text);
-        return readOfText(path);
+        Path path = CheckWay(addressText);
+        String result = readOfText(path);
+        return result;
     }
+    private static Path CheckWay(String addressText) {
+        Path path = null; // InvalidPathException
 
-    private static Path getPath(String text) {
-        Path path = null;
         try {
-            path = Path.of(text);
-        } catch (InvalidPathException e) {  // Path(of)  // dfbdfgjb
+            path = Path.of(addressText);
+        } catch (InvalidPathException e) {
             System.out.println("Путь не путь");
+            System.exit(1);
         }
         if (Files.isDirectory(path)) {
             System.out.println("Такой директрии не существует.");
             System.exit(1);
         }
+        checkWayFromUser(addressText, path);
         return path;
+    }
+    private static void checkWayFromUser(String addressText, Path path) {
+        if (addressText.isEmpty()) {
+            System.out.println("Имя файла не может быть пустым. Попробуй еще:");
+            getTextFromUser();
+        }
+        if (!(Files.exists(path))) {
+            System.out.println("Такого файла не существует. Попробуй еще: ");
+            getTextFromUser();
+        }
     }
     public static String readOfText(Path path) {
 
         List<String> list = new ArrayList<>();
         try {
             list = Files.readAllLines(path);
+            if (list.isEmpty()) {
+                System.out.println("В указаном файле нет данных, обновите текст и возвращайтесь.");
+                System.exit(0);
+            }
         } catch (IOException ex) {
-            System.out.println("Ошибка чтения файла: " + path + "Причина: " + ex.getMessage());
+            System.out.println("Ошибка чтения полученного файла ");
         }
-
         StringBuilder builder1 = new StringBuilder();
         for (String x : list) {
             builder1.append(x);
         }
         String result = builder1.toString().toLowerCase();
-
         return result;
-
     }
-
 }
-
-

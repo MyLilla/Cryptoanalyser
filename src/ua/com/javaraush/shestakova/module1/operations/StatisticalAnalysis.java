@@ -9,7 +9,7 @@ public class StatisticalAnalysis {
 
     public static void startAnalysis() {
         try {
-            String text = GetText.getWayFromFromUser(); // есть зашифрованный текст от пользователя
+            String text = GetText.getTextFromUser(); // есть зашифрованный текст от пользователя
             metric(text);
         } catch (Exception e) {
             System.out.println("error" + e);

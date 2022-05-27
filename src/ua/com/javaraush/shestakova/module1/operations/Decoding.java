@@ -3,14 +3,15 @@ package ua.com.javaraush.shestakova.module1.operations;
 public class Decoding {
     public static void startDecoding() {
 
-            int key = GetKey.KEY;
-            String text = GetText.getWayFromFromUser();
+        int key = GetKey.getTheKey();
 
-            String result = AlgorithmDecodingWithKey(text, key);
+        String text = GetText.getTextFromUser();
 
-            System.out.println(result);
-            WriteText.startWriting(result);
+        String result = AlgorithmDecodingWithKey(text, key);
+
+        WriteText.startWriting(result);
     }
+
     public static String AlgorithmDecodingWithKey(String text, int key) {
 
         StringBuilder result = new StringBuilder();
@@ -28,4 +29,4 @@ public class Decoding {
         }
         return result.toString();
     }
-    }
+}
