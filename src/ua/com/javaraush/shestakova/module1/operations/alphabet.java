@@ -8,5 +8,7 @@ package ua.com.javaraush.shestakova.module1.operations;
                                            "1234567890";
   public static final int alphabetLength = alphabet.length();
 
+  // test
+
  }
 
