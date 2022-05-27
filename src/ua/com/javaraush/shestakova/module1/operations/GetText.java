@@ -6,36 +6,37 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.Scanner;
 
 public class GetText {
 
-    public static String getTextFromUser() {
+    public static String getWayFromFromUser() {
 
-        System.out.println("Введите адрес документа : ");
+        System.out.println("Введите адрес текстового документа в формате \"С://Новая папка/text.txt\": ");
 
         Scanner scanner = new Scanner(System.in);
-        String test = scanner.nextLine();
+        String text = scanner.nextLine();
         //  String test = "D://Cryptoanalyser/result.txt";
 
+        Path path = getPath(text);
+        return readOfText(path);
+    }
+
+    private static Path getPath(String text) {
         Path path = null;
         try {
-            path = Path.of(test);
-        } catch (InvalidPathException e) {  // Path(of)
+            path = Path.of(text);
+        } catch (InvalidPathException e) {  // Path(of)  // dfbdfgjb
             System.out.println("Путь не путь");
         }
         if (Files.isDirectory(path)) {
             System.out.println("Такой директрии не существует.");
             System.exit(1);
         }
-//        try {
-//            if (Files.newDirectoryStream(path).iterator().hasNext()) {
-//                System.out.println("Папка пустая.");
-//                System.exit(1);
-//            }
-//        } catch (IOException ex) {
-//            System.out.println("Произошла ошибка. Причина: " + ex.getMessage());
-//        }
+        return path;
+    }
+    public static String readOfText(Path path) {
 
         List<String> list = new ArrayList<>();
         try {
@@ -48,10 +49,12 @@ public class GetText {
         for (String x : list) {
             builder1.append(x);
         }
+        String result = builder1.toString().toLowerCase();
 
-        String text = builder1.toString().toLowerCase();
+        return result;
 
-        return text;
     }
 
 }
+
+

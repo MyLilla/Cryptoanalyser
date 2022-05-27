@@ -50,3 +50,12 @@ public class WriteText {
         }
     }
 }
+
+//        try {
+//            if (Files.newDirectoryStream(path).iterator().hasNext()) {
+//                System.out.println("Папка пустая.");
+//                System.exit(1);
+//            }
+//        } catch (IOException ex) {
+//            System.out.println("Произошла ошибка. Причина: " + ex.getMessage());
+//        }
