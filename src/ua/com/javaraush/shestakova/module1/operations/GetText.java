@@ -15,6 +15,8 @@ public class GetText {
 
         System.out.println("Введите адрес текстового документа в формате \"С://Новая папка/text.txt\": ");
 
+        // Test For Pull - request
+
         Scanner scanner = new Scanner(System.in);
         String text = scanner.nextLine();
         //  String test = "D://Cryptoanalyser/result.txt";
