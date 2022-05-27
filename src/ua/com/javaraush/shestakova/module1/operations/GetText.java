@@ -1,6 +1,7 @@
 package ua.com.javaraush.shestakova.module1.operations;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -12,14 +13,20 @@ public class GetText {
 
     public static String getTextFromUser() {
 
-        System.out.println("Введите адрес текстового документа в формате \"С://Новая папка/test.txt\": ");
+        System.out.println("Введите полный адрес текстового документа : ");
 
         Scanner scanner = new Scanner(System.in);
         String addressText = scanner.nextLine();
         //  String addressText = "D://Cryptoanalyser/result2.txt";
 
         Path path = CheckWay(addressText);
-        String result = readOfText(path);
+        String result = null;
+        try {
+           result = readOfText(path, System.out);
+        }catch (RuntimeException e) {
+           // e.printStackTrace();
+            System.exit(0);
+        }
         return result;
     }
     private static Path CheckWay(String addressText) {
@@ -38,6 +45,7 @@ public class GetText {
         checkWayFromUser(addressText, path);
         return path;
     }
+
     private static void checkWayFromUser(String addressText, Path path) {
         if (addressText.isEmpty()) {
             System.out.println("Имя файла не может быть пустым. Попробуй еще:");
@@ -48,17 +56,23 @@ public class GetText {
             getTextFromUser();
         }
     }
-    public static String readOfText(Path path) {
+
+    public static String readOfText(Path path, PrintStream out) {
 
         List<String> list = new ArrayList<>();
         try {
             list = Files.readAllLines(path);
             if (list.isEmpty()) {
-                System.out.println("В указаном файле нет данных, обновите текст и возвращайтесь.");
-                System.exit(0);
+                out.println("В указаном файле нет данных, обновите текст и возвращайтесь.");
+               throw new RuntimeException ("File is empty");
+            }
+            if (!(Files.isReadable(path))) {
+                out.println("Этот файл невозможно прочитать. Проверь его и возвращайся");
+                throw new RuntimeException ("Can't read the file.");
             }
         } catch (IOException ex) {
-            System.out.println("Ошибка чтения полученного файла ");
+            out.println("Ошибка чтения полученного файла ");
+            System.exit(1);
         }
         StringBuilder builder1 = new StringBuilder();
         for (String x : list) {

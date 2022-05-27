@@ -1,6 +1,6 @@
 package ua.com.javaraush.shestakova.module1.operations;
 
-import java.util.InputMismatchException;
+
 import java.util.Scanner;
 
 public class Dialog {

@@ -3,7 +3,7 @@ package ua.com.javaraush.shestakova.module1.operations;
 public class Coding {
     public static void startCoding() {
 
-        int key = GetKey.getTheKey();
+        int key = GetKey.getTheKey(System.out);
         checkKeyForCoding(key);
 
         String text = GetText.getTextFromUser();

@@ -3,7 +3,7 @@ package ua.com.javaraush.shestakova.module1.operations;
 public class Decoding {
     public static void startDecoding() {
 
-        int key = GetKey.getTheKey();
+        int key = GetKey.getTheKey(System.out);
 
         String text = GetText.getTextFromUser();
 
