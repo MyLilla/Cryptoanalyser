@@ -1,4 +1,8 @@
-package ua.com.javaraush.shestakova.module1.operations;
+package ua.com.javaraush.shestakova.module1.Algorithms;
+
+import ua.com.javaraush.shestakova.module1.ResursesFromUser.GetText;
+import ua.com.javaraush.shestakova.module1.ResursesFromUser.WriteText;
+import ua.com.javaraush.shestakova.module1.Other.Alphabet;
 
 public class BruteForce {
 
@@ -11,7 +15,7 @@ public class BruteForce {
         WriteText.startWriting(textResult);
     }
     private static String AlgorithmBruteForce(String text) {
-        for (int i = 0; i < alphabet.alphabetLength; i++) {
+        for (int i = 0; i < Alphabet.alphabetLength; i++) {
 
             String testText = Decoding.AlgorithmDecodingWithKey(text, i);
             boolean resultTest = checkForExit(testText);

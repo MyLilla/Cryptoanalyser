@@ -1,4 +1,4 @@
-package ua.com.javaraush.shestakova.module1.operations;
+package ua.com.javaraush.shestakova.module1.ResursesFromUser;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -19,7 +19,7 @@ public class GetText {
         String addressText = scanner.nextLine();
         //  String addressText = "D://Cryptoanalyser/result2.txt";
 
-        Path path = CheckWay(addressText);
+        Path path = CheckWay(addressText, System.out);
         String result = null;
         try {
            result = readOfText(path, System.out);
@@ -29,17 +29,17 @@ public class GetText {
         }
         return result;
     }
-    private static Path CheckWay(String addressText) {
-        Path path = null; // InvalidPathException
+    private static Path CheckWay(String addressText, PrintStream out) {
+        Path path = null;
 
         try {
             path = Path.of(addressText);
         } catch (InvalidPathException e) {
-            System.out.println("Путь не путь");
+            out.println("Путь указан не верно. Проверьте файл и возвращайтесь.");
             System.exit(1);
         }
         if (Files.isDirectory(path)) {
-            System.out.println("Такой директрии не существует.");
+            out.println("Такой директрии не существует.");
             System.exit(1);
         }
         checkWayFromUser(addressText, path);

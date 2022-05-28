@@ -1,4 +1,6 @@
-package ua.com.javaraush.shestakova.module1.operations;
+package ua.com.javaraush.shestakova.module1.Algorithms;
+
+import ua.com.javaraush.shestakova.module1.ResursesFromUser.GetText;
 
 import java.io.IOException;
 import java.nio.file.Files;

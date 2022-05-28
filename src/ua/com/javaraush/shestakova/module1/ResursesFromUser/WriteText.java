@@ -1,4 +1,4 @@
-package ua.com.javaraush.shestakova.module1.operations;
+package ua.com.javaraush.shestakova.module1.ResursesFromUser;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
