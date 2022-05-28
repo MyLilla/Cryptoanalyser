@@ -12,12 +12,12 @@ public class Decoding {
 
         String text = GetText.getTextFromUser();
 
-        String result = AlgorithmDecodingWithKey(text, key);
+        String result = DecodWithKey(text, key);
 
         WriteText.startWriting(result);
     }
 
-    public static String AlgorithmDecodingWithKey(String text, int key) {
+    public static String DecodWithKey(String text, int key) {
 
         StringBuilder result = new StringBuilder();
 

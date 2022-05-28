@@ -10,14 +10,14 @@ public class BruteForce {
 
         String text = GetText.getTextFromUser();
 
-        String textResult = AlgorithmBruteForce(text);
+        String textResult = algorithmBruteForce(text);
 
         WriteText.startWriting(textResult);
     }
-    private static String AlgorithmBruteForce(String text) {
+    private static String algorithmBruteForce(String text) {
         for (int i = 0; i < Alphabet.alphabetLength; i++) {
 
-            String testText = Decoding.AlgorithmDecodingWithKey(text, i);
+            String testText = Decoding.DecodWithKey(text, i);
             boolean resultTest = checkForExit(testText);
 
             if (resultTest) {
@@ -27,7 +27,7 @@ public class BruteForce {
         }
         return null;
     }
-    private static boolean checkForExit(String testText) {
+    public static boolean checkForExit(String testText) {
 
         String[] popular = new String[]{" и ", " на ", " в ", ". ", "не", "я"};
         int index = 0;

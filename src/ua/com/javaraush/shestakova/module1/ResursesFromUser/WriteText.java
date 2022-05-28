@@ -21,7 +21,7 @@ public class WriteText {
             }
             System.out.println("Результат сохранен в файле: " + way);
         } catch (IOException | RuntimeException e) {
-            System.out.println("Вы ввели не корректный путь.");
+            System.out.println("Вы ввели не корректный путь."); // выбрасывает, когда файл с таким именем есть
             System.exit(1);
         }
     }

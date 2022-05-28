@@ -1,75 +1,82 @@
 package ua.com.javaraush.shestakova.module1.Algorithms;
 
+import ua.com.javaraush.shestakova.module1.Other.Alphabet;
 import ua.com.javaraush.shestakova.module1.ResursesFromUser.GetText;
+import ua.com.javaraush.shestakova.module1.ResursesFromUser.WriteText;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.PrintStream;
 import java.util.*;
 
 public class StatisticalAnalysis {
 
     public static void startAnalysis() {
-        try {
+
             String text = GetText.getTextFromUser(); // есть зашифрованный текст от пользователя
-            metric(text);
-        } catch (Exception e) {
-            System.out.println("error" + e);
+            String result = algorithmStatistical(text, System.out);
+        WriteText.startWriting(result);
+    }
+    public static String algorithmStatistical(String textFromUser, PrintStream out) {
+
+        char symbolInCode = GetMaxTimesSymbol(textFromUser);
+
+        int indexSymbolInAlpha = getIndexFromAlphabet(Alphabet.alphabetArray, symbolInCode);
+        int indexSpase = getIndexFromAlphabet(Alphabet.alphabetArray, ' ');
+
+        if (indexSymbolInAlpha == indexSpase){
+           out.println("Это не зашифрованный текст Скорей всего, шифровка была не через эту программу. " +
+                    "проверьте текст (и свои навыки чтения) и возвращайтесь");
+            System.exit(1);
         }
+        int keyMinus = indexSpase - indexSymbolInAlpha;
+        int keyPlus = indexSymbolInAlpha - indexSpase;
+
+        String result = null;
+        if (BruteForce.checkForExit(Decoding.DecodWithKey(textFromUser, keyPlus))) {
+            result = Decoding.DecodWithKey(textFromUser, keyPlus);
+            out.println("Ключь к коду = " + keyPlus);
+        } else if (BruteForce.checkForExit(Decoding.DecodWithKey(textFromUser, keyMinus))) {
+            result = Decoding.DecodWithKey(textFromUser, keyMinus);
+            out.println("Ключь к коду = " + keyMinus);
+        }
+        return result;
     }
 
-    public static void metric(String textWithShifr) throws IOException { // передается зашифрованый
-
-
-        String textNew = textWithShifr;
-
-
+    private static int getIndexFromAlphabet(char[] array, char symbol) {
+        int index = 0;
+        for (int i = 0; i < Alphabet.alphabet.length(); i++) {
+            if (Alphabet.alphabetArray[i] == symbol) {
+                index = i;
+                continue;
+            }
         }
+        return index;
+    }
+    public static Character GetMaxTimesSymbol(String textFromUser) {
 
+        String[] arrayTextFromUser = textFromUser.split("");
 
-    public static void withOriginal () throws IOException{ // c оргиналом
+        Map<Object, Integer> map = new HashMap<>();
 
-        List<String> list = new ArrayList<>(getTEXTforMert()); // текст расшифрованый из листа в
+        for (int i =0; i < arrayTextFromUser.length; i++) {
+            char temp = arrayTextFromUser[i].charAt(0);
 
-        int textSize = list.size();           // 29 705
-        String orig = list.toString(); // расшифрованный в листе
-
-        for (String x : orig.split(" ")) {  // проход по разбитому на слова листу
-            list.add(x);
-            System.out.println(x);
+            if (map.containsKey(temp))
+            {
+                map.put(temp, Integer.parseInt(map.get(temp).toString()) + 1);
+            } else {
+                map.put(temp, 0);
+            }
         }
+        Integer max = Collections.max (map.values());
+        Character result = null;
 
-        int letter1 = Collections.frequency(list, "и"); // 188
-        int letter2 = Collections.frequency(list, "в"); // 158
-        int letter3 = Collections.frequency(list, "не"); // 53
-        int letter4 = Collections.frequency(list, " "); // 53
-        System.out.println(letter4);
-
-
-        int IpercentageOfText = (letter1 / textSize) * 100;
-        int VpercentageOfText = (letter2 / textSize) * 100;
-        int NEpercentageOfText = (letter3 / textSize) * 100;
-        int SpaceInText = (letter3 / textSize) * 100;
-        System.out.println(SpaceInText);
+        for (Map.Entry entry : map.entrySet())
+        {
+            if (max == entry.getValue()){
+                result = (char) entry.getKey();
+            }
+        }
+        return result;
 
     }
-
-
-    public static List<String> getTEXTforMert () throws IOException {
-
-        String test = "D://Cryptoanalyser/test.txt";
-        List<String> list1 = Files.readAllLines(Path.of(test));
-
-//        StringBuilder builder1 = new StringBuilder();
-//        for (String x : list1) {
-//            builder1.append(x);
-//        }
-//        String text = builder1.toString().toLowerCase(); // текст для метрик String
-
-
-
-        return list1;
-    }
-
-
 }

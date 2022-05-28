@@ -39,7 +39,7 @@ public class GetText {
             System.exit(1);
         }
         if (Files.isDirectory(path)) {
-            out.println("Такой директрии не существует.");
+            out.println("Это папка. Проверьте файл и возвращайтесь");
             System.exit(1);
         }
         checkWayFromUser(addressText, path);
@@ -71,7 +71,7 @@ public class GetText {
                 throw new RuntimeException ("Can't read the file.");
             }
         } catch (IOException ex) {
-            out.println("Ошибка чтения полученного файла ");
+            out.println("Ошибка чтения полученного файла "); // вылезает СО ВТОРОГО РАЗА если нет в конце .txt
             System.exit(1);
         }
         StringBuilder builder1 = new StringBuilder();
