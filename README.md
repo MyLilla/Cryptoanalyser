@@ -5,6 +5,8 @@
 
 <h1 > <a>Cryptoanalyser</a> </h1> 
 
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?lines=Cryptoanalyser)](https://git.io/typing-svg)
+
 <h3>Программа зашифровывает и расшифровывает текст "Шифром Цезаря".</h3>
 
 <h3><a>Доступны операции:</a></h3>
