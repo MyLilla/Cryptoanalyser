@@ -1,4 +1,4 @@
-package ua.com.javaraush.shestakova.module1.Other;
+package ua.com.javarush.shestakova.module1.Date;
 
  public class Alphabet {
   public static final  String alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" +

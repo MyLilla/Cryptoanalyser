@@ -1,8 +1,8 @@
-package ua.com.javaraush.shestakova.module1.Algorithms;
+package ua.com.javarush.shestakova.module1.Algorithms;
 
-import ua.com.javaraush.shestakova.module1.Other.Alphabet;
-import ua.com.javaraush.shestakova.module1.ResursesFromUser.GetText;
-import ua.com.javaraush.shestakova.module1.ResursesFromUser.WriteText;
+import ua.com.javarush.shestakova.module1.Date.Alphabet;
+import ua.com.javarush.shestakova.module1.ResourcesFromUser.GetText;
+import ua.com.javarush.shestakova.module1.ResourcesFromUser.WriteText;
 
 import java.io.PrintStream;
 import java.util.*;
@@ -50,6 +50,7 @@ public class StatisticalAnalysis {
             }
         }
         return index;
+        // java ua.com.javaraush.shestakova.module1.Main
     }
     public static Character GetMaxTimesSymbol(String textFromUser) {
 

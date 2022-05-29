@@ -1,9 +1,9 @@
-package ua.com.javaraush.shestakova.module1.Algorithms;
+package ua.com.javarush.shestakova.module1.Algorithms;
 
-import ua.com.javaraush.shestakova.module1.ResursesFromUser.GetKey;
-import ua.com.javaraush.shestakova.module1.ResursesFromUser.GetText;
-import ua.com.javaraush.shestakova.module1.ResursesFromUser.WriteText;
-import ua.com.javaraush.shestakova.module1.Other.Alphabet;
+import ua.com.javarush.shestakova.module1.ResourcesFromUser.GetKey;
+import ua.com.javarush.shestakova.module1.ResourcesFromUser.GetText;
+import ua.com.javarush.shestakova.module1.ResourcesFromUser.WriteText;
+import ua.com.javarush.shestakova.module1.Date.Alphabet;
 
 public class Decoding {
     public static void startDecoding() {

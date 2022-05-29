@@ -1,9 +1,9 @@
-package ua.com.javaraush.shestakova.module1.Algorithms;
+package ua.com.javarush.shestakova.module1.Algorithms;
 
-import ua.com.javaraush.shestakova.module1.ResursesFromUser.GetKey;
-import ua.com.javaraush.shestakova.module1.ResursesFromUser.GetText;
-import ua.com.javaraush.shestakova.module1.ResursesFromUser.WriteText;
-import ua.com.javaraush.shestakova.module1.Other.Alphabet;
+import ua.com.javarush.shestakova.module1.ResourcesFromUser.GetKey;
+import ua.com.javarush.shestakova.module1.ResourcesFromUser.GetText;
+import ua.com.javarush.shestakova.module1.ResourcesFromUser.WriteText;
+import ua.com.javarush.shestakova.module1.Date.Alphabet;
 
 public class Coding {
     public static void startCoding() {
@@ -28,8 +28,8 @@ public class Coding {
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < text.length(); i++) {
-            int index = Alphabet.alphabet.indexOf(text.charAt(i)); // получаю индекс буквы в алфавите, которую двигать
-            int steps = (index + key) % Alphabet.alphabetLength; // на сколько двигать
+            int index = Alphabet.alphabet.indexOf(text.charAt(i));
+            int steps = (index + key) % Alphabet.alphabetLength;
 
             if (index < Math.abs(key) && (key < 0)) {
                 result.append(Alphabet.alphabet.charAt(Alphabet.alphabetLength - Math.abs(steps)));
@@ -37,7 +37,6 @@ public class Coding {
                 result.append(Alphabet.alphabet.charAt(steps));
             }
         }
-
         return result.toString();
     }
 }
