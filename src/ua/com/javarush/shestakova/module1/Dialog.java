@@ -70,7 +70,7 @@ public class Dialog {
             }
 
         } catch (NumberFormatException e) {
-            out.println("Это не " + Color.RED + "целое положительное число из списка" + Color.RESET + ". Попробуй еще");
+            out.println("Это не " + Color.RED + "цифра" + Color.RESET + ". Попробуй еще");
             ChoiceOfOperation(System.out);
         }
     }

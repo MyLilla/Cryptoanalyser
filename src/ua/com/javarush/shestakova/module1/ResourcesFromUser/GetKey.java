@@ -14,7 +14,7 @@ public class GetKey {
         try {
             KEY = Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            out.println("Это " + Color.RED + "не число" + Color.RESET +" Попробуй еще: ");
+            out.println("Это " + Color.RED + "не число" + Color.RESET + " Попробуй еще: ");
             Coding.startCoding();
         }
         return KEY;

@@ -17,7 +17,7 @@ public class BruteForce {
     private static String algorithmBruteForce(String text) {
         for (int i = 0; i < Alphabet.alphabetLength; i++) {
 
-            String testText = Decoding.DecodWithKey(text, i);
+            String testText = Decoding.DecodeWithKey(text, i);
             boolean resultTest = checkForExit(testText);
 
             if (resultTest) {

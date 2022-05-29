@@ -19,34 +19,29 @@ public class GetText {
 
         Scanner scanner = new Scanner(System.in);
         String addressText = scanner.nextLine();
-        //  String addressText = "D://Cryptoanalyser/result.txt";
 
         Path path = CheckWay(addressText, System.out);
+
         String result = null;
-        try {
-            result = readOfText(path, System.out);
-        }catch (RuntimeException e) {
-            // e.printStackTrace();
-            System.exit(0);
-        }
+        result = readOfText(path, System.out);
+
         return result;
     }
     private static Path CheckWay(String addressText, PrintStream out) {
         Path path = null;
-
         try {
             path = Path.of(addressText);
 
-        if (Files.isDirectory(path)) { // папка
+        if (Files.isDirectory(path)) {
             out.println("Это " + Color.RED + "папка" + Color.RESET + ". Проверьте файл и возвращайтесь");
             System.exit(1);
         }
-        if (addressText.isEmpty()) { // пустой путь
+        if (addressText.isEmpty()) {
             System.out.println("Имя файла " + Color.RED + "не может быть пустым" + Color.RESET +
                     ". Проверьте файл и возвращайтесь");
             System.exit(1);
         }
-        if (!(Files.exists(path))) { // не существует
+        if (!(Files.exists(path))) {
             System.out.println("Такого файла "+ Color.RED +"не существует" + Color.RESET +
                     ". Проверьте файл и возвращайтесь");
             System.exit(1);
@@ -65,15 +60,14 @@ public class GetText {
             if (list.isEmpty()) {
                 out.println("В указаном файле " + Color.RED + "нет данных" + Color.RESET +
                         ", обновите текст и возвращайтесь.");
-                throw new RuntimeException ("File is empty");
+                throw new FileProcessingException ("File is empty" + path);
             }
             if (!(Files.isReadable(path))) {
                 out.println("Этот файл невозможно прочитать. Проверь его и возвращайся");
-                throw new RuntimeException ("Can't read the file.");
+                throw new FileProcessingException ("Can't read the file." + path);
             }
         } catch (IOException ex) {
-            out.println("Ошибка чтения полученного файла "); // вылезает СО ВТОРОГО РАЗА если нет в конце .txt
-            System.exit(1);
+            throw new FileProcessingException ("Ошибка чтения полученного файла" + ex + path);
         }
         StringBuilder builder1 = new StringBuilder();
         for (String x : list) {

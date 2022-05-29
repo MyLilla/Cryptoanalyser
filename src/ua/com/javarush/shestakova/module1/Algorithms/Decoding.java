@@ -12,18 +12,18 @@ public class Decoding {
 
         String text = GetText.getTextFromUser();
 
-        String result = DecodWithKey(text, key);
+        String result = DecodeWithKey(text, key);
 
         WriteText.startWriting(result);
     }
 
-    public static String DecodWithKey(String text, int key) {
+    public static String DecodeWithKey(String text, int key) {
 
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < text.length(); i++) {
-            int index = Alphabet.alphabet.indexOf(text.charAt(i)); // получаю индекс буквы в алфавите, которую двигать
-            int stepBack = (index - key) % Alphabet.alphabetLength; // на сколько двигать
+            int index = Alphabet.alphabet.indexOf(text.charAt(i));
+            int stepBack = (index - key) % Alphabet.alphabetLength;
             if (stepBack < 0) {
                 char encoding = Alphabet.alphabet.charAt(Alphabet.alphabetLength - Math.abs(stepBack));
                 result.append(encoding);

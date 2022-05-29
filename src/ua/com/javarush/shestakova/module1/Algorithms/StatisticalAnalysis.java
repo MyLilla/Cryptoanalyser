@@ -1,6 +1,7 @@
 package ua.com.javarush.shestakova.module1.Algorithms;
 
 import ua.com.javarush.shestakova.module1.Date.Alphabet;
+import ua.com.javarush.shestakova.module1.Date.Color;
 import ua.com.javarush.shestakova.module1.ResourcesFromUser.GetText;
 import ua.com.javarush.shestakova.module1.ResourcesFromUser.WriteText;
 
@@ -11,7 +12,7 @@ public class StatisticalAnalysis {
 
     public static void startAnalysis() {
 
-            String text = GetText.getTextFromUser(); // есть зашифрованный текст от пользователя
+            String text = GetText.getTextFromUser();
             String result = algorithmStatistical(text, System.out);
         WriteText.startWriting(result);
     }
@@ -23,7 +24,8 @@ public class StatisticalAnalysis {
         int indexSpase = getIndexFromAlphabet(Alphabet.alphabetArray, ' ');
 
         if (indexSymbolInAlpha == indexSpase){
-           out.println("Это не зашифрованный текст Скорей всего, шифровка была не через эту программу. " +
+           out.println("Это " + Color.RED + "не зашифрованный текст" + Color.RESET +
+                   ".Скорей всего, шифровка была не через эту программу. " +
                     "проверьте текст (и свои навыки чтения) и возвращайтесь");
             System.exit(1);
         }
@@ -31,11 +33,11 @@ public class StatisticalAnalysis {
         int keyPlus = indexSymbolInAlpha - indexSpase;
 
         String result = null;
-        if (BruteForce.checkForExit(Decoding.DecodWithKey(textFromUser, keyPlus))) {
-            result = Decoding.DecodWithKey(textFromUser, keyPlus);
+        if (BruteForce.checkForExit(Decoding.DecodeWithKey(textFromUser, keyPlus))) {
+            result = Decoding.DecodeWithKey(textFromUser, keyPlus);
             out.println("Ключь к коду = " + keyPlus);
-        } else if (BruteForce.checkForExit(Decoding.DecodWithKey(textFromUser, keyMinus))) {
-            result = Decoding.DecodWithKey(textFromUser, keyMinus);
+        } else if (BruteForce.checkForExit(Decoding.DecodeWithKey(textFromUser, keyMinus))) {
+            result = Decoding.DecodeWithKey(textFromUser, keyMinus);
             out.println("Ключь к коду = " + keyMinus);
         }
         return result;
@@ -50,7 +52,6 @@ public class StatisticalAnalysis {
             }
         }
         return index;
-        // java ua.com.javaraush.shestakova.module1.Main
     }
     private static Character GetMaxTimesSymbol(String textFromUser) {
 

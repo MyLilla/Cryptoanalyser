@@ -20,9 +20,9 @@ public class WriteText {
                 file.close();
             }
             System.out.println("Результат сохранен в файле: " + way);
-        } catch (IOException | RuntimeException e) {
+        } catch (IOException e) {
             System.out.println("Вы ввели не корректный путь. Возможно, файл с таким именем уже есть.");
-           startWriting(result);
+          throw new FileProcessingException("incorrect path" + e);
         }
     }
     public static String getWayForWrite(PrintStream out) throws IOException {
@@ -51,7 +51,7 @@ public class WriteText {
 
         return way;
     }
-    private static void checkDirectory(String pathUsers, PrintStream out) throws IOException {
+    private static void checkDirectory(String pathUsers, PrintStream out) {
         try {
             Path wayToDirectory = Path.of(pathUsers);
 
@@ -59,12 +59,11 @@ public class WriteText {
                out.println("Указанный путь не является папкой. Проверьте файл и возвращайтесь");
                 System.exit(1);
             }
-
         } catch (SecurityException ex) {
             System.out.println("Доступ запрещен");
+            throw new FileProcessingException("No access" + ex);
         }
     }
-
     private static String getNameNewFile(PrintStream out) {
         Scanner scanner = new Scanner(System.in);
 
