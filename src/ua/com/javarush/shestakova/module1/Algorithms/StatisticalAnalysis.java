@@ -52,7 +52,7 @@ public class StatisticalAnalysis {
         return index;
         // java ua.com.javaraush.shestakova.module1.Main
     }
-    public static Character GetMaxTimesSymbol(String textFromUser) {
+    private static Character GetMaxTimesSymbol(String textFromUser) {
 
         String[] arrayTextFromUser = textFromUser.split("");
 
