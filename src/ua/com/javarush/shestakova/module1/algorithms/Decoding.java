@@ -1,14 +1,14 @@
-package ua.com.javarush.shestakova.module1.Algorithms;
+package ua.com.javarush.shestakova.module1.algorithms;
 
-import ua.com.javarush.shestakova.module1.ResourcesFromUser.GetKey;
-import ua.com.javarush.shestakova.module1.ResourcesFromUser.GetText;
-import ua.com.javarush.shestakova.module1.ResourcesFromUser.WriteText;
-import ua.com.javarush.shestakova.module1.Date.Alphabet;
+import ua.com.javarush.shestakova.module1.resourcesFromUser.KeyService;
+import ua.com.javarush.shestakova.module1.resourcesFromUser.GetText;
+import ua.com.javarush.shestakova.module1.resourcesFromUser.WriteText;
+import ua.com.javarush.shestakova.module1.date.Alphabet;
 
 public class Decoding {
     public static void startDecoding() {
 
-        int key = GetKey.getTheKey(System.out);
+        int key = KeyService.getKey(System.out);
 
         String text = GetText.getTextFromUser();
 

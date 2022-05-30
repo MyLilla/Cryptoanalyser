@@ -1,4 +1,6 @@
-package ua.com.javarush.shestakova.module1.ResourcesFromUser;
+package ua.com.javarush.shestakova.module1.resourcesFromUser;
+
+import ua.com.javarush.shestakova.module1.exceptions.FileProcessingException;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,6 +11,7 @@ import java.nio.file.Path;
 import java.util.Scanner;
 
 public class WriteText {
+    public static final int MAX_LONG_NAME_FILE = 15;
     public static void startWriting(String result) {
 
         try {
@@ -16,7 +19,7 @@ public class WriteText {
             FileOutputStream file = new FileOutputStream(way);
             file.write(result.getBytes(StandardCharsets.UTF_8));
 
-            if (!(way == null)) {
+            if ((way != null)) {
                 file.close();
             }
             System.out.println("Результат сохранен в файле: " + way);
@@ -25,7 +28,7 @@ public class WriteText {
           throw new FileProcessingException("incorrect path" + e);
         }
     }
-    public static String getWayForWrite(PrintStream out) throws IOException {
+    public static String getWayForWrite (PrintStream out) throws IOException {
 
         out.println("Введите адрес папки, куда сохранить полученный файл: ");
 
@@ -34,16 +37,16 @@ public class WriteText {
 
         if (WayDirectoryFromUser.isEmpty()) {
             System.out.println("Имя папки не может быть пустым. Проверьте файл и возвращайтесь");
-            System.exit(1);
+            System.exit(0);
         }
         if ((WayDirectoryFromUser.equals("C:\\Windows") ||
                 WayDirectoryFromUser.equals("/etc"))) {
             out.println("Запись в эту папку может повредить систему. Проверьте файл и возвращайтесь");
-            System.exit(1);
+            System.exit(0);
         }
 
         checkDirectory(WayDirectoryFromUser, System.out);
-        String nameFile = getNameNewFile(System.out).trim();
+        String nameFile = getNewFileName(System.out).trim();
 
         String way = (WayDirectoryFromUser + "/" + nameFile + ".txt");
 
@@ -51,20 +54,20 @@ public class WriteText {
 
         return way;
     }
-    private static void checkDirectory(String pathUsers, PrintStream out) {
+    private static void checkDirectory (String pathUsers, PrintStream out) {
         try {
             Path wayToDirectory = Path.of(pathUsers);
 
             if (!Files.isDirectory(wayToDirectory)) {
                out.println("Указанный путь не является папкой. Проверьте файл и возвращайтесь");
-                System.exit(1);
+                System.exit(0);
             }
         } catch (SecurityException ex) {
             System.out.println("Доступ запрещен");
             throw new FileProcessingException("No access" + ex);
         }
     }
-    private static String getNameNewFile(PrintStream out) {
+    private static String getNewFileName (PrintStream out) {
         Scanner scanner = new Scanner(System.in);
 
        out.println("Введите имя нового файла: ");
@@ -72,18 +75,18 @@ public class WriteText {
 
         if (nameFile.isEmpty()) {
             System.out.println("Имя файла не может быть пустым.");
-            System.exit(1);
+            System.exit(0);
         }
-        if (nameFile.length() > 15) {
+        if (nameFile.length() > MAX_LONG_NAME_FILE) {
             System.out.println("Слишком много букв.");
-            System.exit(1);
+            System.exit(0);
 
         }
         if (nameFile.contains(".") ||
                 nameFile.contains(" ") ||
                 nameFile.contains("/")) {
             System.out.println("Название не должно содержать пробелов и знаков припинания.");
-            System.exit(1);
+            System.exit(0);
         }
         return nameFile;
     }

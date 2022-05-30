@@ -1,10 +1,11 @@
-package ua.com.javarush.shestakova.module1.Algorithms;
+package ua.com.javarush.shestakova.module1.algorithms;
 
-import ua.com.javarush.shestakova.module1.ResourcesFromUser.GetText;
-import ua.com.javarush.shestakova.module1.ResourcesFromUser.WriteText;
-import ua.com.javarush.shestakova.module1.Date.Alphabet;
+import ua.com.javarush.shestakova.module1.resourcesFromUser.GetText;
+import ua.com.javarush.shestakova.module1.resourcesFromUser.WriteText;
+import ua.com.javarush.shestakova.module1.date.Alphabet;
 
 public class BruteForce {
+
 
     public static void startBruteForce() {
 
@@ -14,6 +15,7 @@ public class BruteForce {
 
         WriteText.startWriting(textResult);
     }
+
     private static String algorithmBruteForce(String text) {
         for (int i = 0; i < Alphabet.alphabetLength; i++) {
 
@@ -27,13 +29,13 @@ public class BruteForce {
         }
         return null;
     }
+
     public static boolean checkForExit(String testText) {
 
-        String[] popular = new String[]{" и ", " на ", " в ", ". ", "не", "я"};
         int index = 0;
 
-        for (int i = 0; i < popular.length; i++) {
-            if (testText.contains(popular[i])) {
+        for (int i = 0; i < Alphabet.POPULAR_LETTERS.length; i++) {
+            if (testText.contains(Alphabet.POPULAR_LETTERS[i])) {
                 index++;
             }
         }

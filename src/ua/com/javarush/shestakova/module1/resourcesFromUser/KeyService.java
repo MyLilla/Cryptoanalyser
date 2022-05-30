@@ -1,13 +1,13 @@
-package ua.com.javarush.shestakova.module1.ResourcesFromUser;
+package ua.com.javarush.shestakova.module1.resourcesFromUser;
 
-import ua.com.javarush.shestakova.module1.Algorithms.Coding;
-import ua.com.javarush.shestakova.module1.Date.Color;
+import ua.com.javarush.shestakova.module1.algorithms.Coding;
+import ua.com.javarush.shestakova.module1.date.Color;
 
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class GetKey {
-    public static int getTheKey(PrintStream out) {
+public class KeyService {
+    public static int getKey(PrintStream out) {
 
         int KEY = 0;
         Scanner scanner = new Scanner(System.in);
