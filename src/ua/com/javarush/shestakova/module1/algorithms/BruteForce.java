@@ -9,7 +9,7 @@ public class BruteForce {
 
     public static void startBruteForce() {
 
-        String text = GetText.getTextFromUser();
+        String text = GetText.getPathFromUser();
 
         String textResult = algorithmBruteForce(text);
 
@@ -17,7 +17,7 @@ public class BruteForce {
     }
 
     private static String algorithmBruteForce(String text) {
-        for (int i = 0; i < Alphabet.alphabetLength; i++) {
+        for (int i = 0; i < Alphabet.LENGTH; i++) {
 
             String testText = Decoding.DecodeWithKey(text, i);
             boolean resultTest = checkForExit(testText);

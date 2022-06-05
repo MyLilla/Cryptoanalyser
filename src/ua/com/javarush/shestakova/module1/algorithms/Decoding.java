@@ -10,7 +10,7 @@ public class Decoding {
 
         int key = KeyService.getKey(System.out);
 
-        String text = GetText.getTextFromUser();
+        String text = GetText.getPathFromUser();
 
         String result = DecodeWithKey(text, key);
 
@@ -22,13 +22,13 @@ public class Decoding {
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < text.length(); i++) {
-            int index = Alphabet.alphabet.indexOf(text.charAt(i));
-            int stepBack = (index - key) % Alphabet.alphabetLength;
+            int index = Alphabet.GET.indexOf(text.charAt(i));
+            int stepBack = (index - key) % Alphabet.LENGTH;
             if (stepBack < 0) {
-                char encoding = Alphabet.alphabet.charAt(Alphabet.alphabetLength - Math.abs(stepBack));
+                char encoding = Alphabet.GET.charAt(Alphabet.LENGTH - Math.abs(stepBack));
                 result.append(encoding);
             } else {
-                char encoding = Alphabet.alphabet.charAt(stepBack);
+                char encoding = Alphabet.GET.charAt(stepBack);
                 result.append(encoding);
             }
         }

@@ -1,5 +1,6 @@
 package ua.com.javarush.shestakova.module1.algorithms;
 
+import ua.com.javarush.shestakova.module1.exceptions.InvalidUserInputException;
 import ua.com.javarush.shestakova.module1.resourcesFromUser.KeyService;
 import ua.com.javarush.shestakova.module1.resourcesFromUser.GetText;
 import ua.com.javarush.shestakova.module1.resourcesFromUser.WriteText;
@@ -14,7 +15,7 @@ public class Coding {
         int key = KeyService.getKey(System.out);
         checkKeyForCoding(key, System.out);
 
-        String text = GetText.getTextFromUser();
+        String text = GetText.getPathFromUser();
         String result = algorithmCodingWithKey(text, key);
 
         WriteText.startWriting(result);
@@ -24,8 +25,7 @@ public class Coding {
         while (resultCheck) {
             if (Math.abs(KEY) > MAX_KEY) {
                 out.println("Надежность кодировки не зависит от размера числа, так что можно поменьше: ");
-                startCoding();
-                break;
+                throw new InvalidUserInputException("Big value of key");
             }
             resultCheck = false;
         }
@@ -35,13 +35,13 @@ public class Coding {
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < text.length(); i++) {
-            int index = Alphabet.alphabet.indexOf(text.charAt(i));
-            int steps = (index + key) % Alphabet.alphabetLength;
+            int index = Alphabet.GET.indexOf(text.charAt(i));
+            int steps = (index + key) % Alphabet.LENGTH;
 
             if (index < Math.abs(key) && (key < 0)) {
-                result.append(Alphabet.alphabet.charAt(Alphabet.alphabetLength - Math.abs(steps)));
+                result.append(Alphabet.GET.charAt(Alphabet.LENGTH - Math.abs(steps)));
             } else {
-                result.append(Alphabet.alphabet.charAt(steps));
+                result.append(Alphabet.GET.charAt(steps));
             }
         }
         return result.toString();

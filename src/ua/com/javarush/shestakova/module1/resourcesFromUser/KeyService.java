@@ -2,6 +2,7 @@ package ua.com.javarush.shestakova.module1.resourcesFromUser;
 
 import ua.com.javarush.shestakova.module1.algorithms.Coding;
 import ua.com.javarush.shestakova.module1.date.Color;
+import ua.com.javarush.shestakova.module1.exceptions.InvalidUserInputException;
 
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -14,9 +15,12 @@ public class KeyService {
         try {
             KEY = Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            out.println("Это " + Color.RED + "не число" + Color.RESET + " Попробуй еще: ");
-            Coding.startCoding();
+            out.println("Это " + Color.RED + "не число" + Color.RESET);
+            throw new InvalidUserInputException("Not number" + e);
         }
         return KEY;
     }
 }
+
+
+

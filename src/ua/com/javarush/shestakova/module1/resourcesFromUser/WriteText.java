@@ -1,6 +1,7 @@
 package ua.com.javarush.shestakova.module1.resourcesFromUser;
 
 import ua.com.javarush.shestakova.module1.exceptions.FileProcessingException;
+import ua.com.javarush.shestakova.module1.exceptions.InvalidUserInputException;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,7 +23,6 @@ public class WriteText {
             if ((way != null)) {
                 file.close();
             }
-            System.out.println("Результат сохранен в файле: " + way);
         } catch (IOException e) {
             System.out.println("Вы ввели не корректный путь. Возможно, файл с таким именем уже есть.");
           throw new FileProcessingException("incorrect path" + e);
@@ -36,16 +36,16 @@ public class WriteText {
         String WayDirectoryFromUser = scanner.nextLine();
 
         if (WayDirectoryFromUser.isEmpty()) {
-            System.out.println("Имя папки не может быть пустым. Проверьте файл и возвращайтесь");
-            System.exit(0);
+            out.println("Имя папки не может быть пустым. Проверьте файл и возвращайтесь");
+            throw new InvalidUserInputException("Name is empty");
         }
         if ((WayDirectoryFromUser.equals("C:\\Windows") ||
                 WayDirectoryFromUser.equals("/etc"))) {
             out.println("Запись в эту папку может повредить систему. Проверьте файл и возвращайтесь");
-            System.exit(0);
+            throw new InvalidUserInputException("Write in the system file");
         }
 
-        checkDirectory(WayDirectoryFromUser, System.out);
+        createDirectory(WayDirectoryFromUser, System.out);
         String nameFile = getNewFileName(System.out).trim();
 
         String way = (WayDirectoryFromUser + "/" + nameFile + ".txt");
@@ -54,16 +54,16 @@ public class WriteText {
 
         return way;
     }
-    private static void checkDirectory (String pathUsers, PrintStream out) {
+    private static void createDirectory(String pathUsers, PrintStream out) {
         try {
             Path wayToDirectory = Path.of(pathUsers);
 
             if (!Files.isDirectory(wayToDirectory)) {
-               out.println("Указанный путь не является папкой. Проверьте файл и возвращайтесь");
-                System.exit(0);
+               out.println("Указанный путь не является папкой.");
+                throw new InvalidUserInputException("Not directory");
             }
         } catch (SecurityException ex) {
-            System.out.println("Доступ запрещен");
+            out.println("Доступ запрещен");
             throw new FileProcessingException("No access" + ex);
         }
     }
@@ -74,19 +74,19 @@ public class WriteText {
         String nameFile = scanner.nextLine();
 
         if (nameFile.isEmpty()) {
-            System.out.println("Имя файла не может быть пустым.");
-            System.exit(0);
+            out.println("Имя файла не может быть пустым.");
+            throw new InvalidUserInputException("File name is empty");
         }
         if (nameFile.length() > MAX_LONG_NAME_FILE) {
-            System.out.println("Слишком много букв.");
-            System.exit(0);
+            out.println("Слишком много букв.");
+            throw new InvalidUserInputException("Very long file name");
 
         }
         if (nameFile.contains(".") ||
                 nameFile.contains(" ") ||
                 nameFile.contains("/")) {
-            System.out.println("Название не должно содержать пробелов и знаков припинания.");
-            System.exit(0);
+           out.println("Название не должно содержать пробелов и знаков припинания.");
+            throw new InvalidUserInputException("File name have punctuation marks");
         }
         return nameFile;
     }

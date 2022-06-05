@@ -12,7 +12,7 @@ public class StatisticalAnalysis {
 
     public static void startAnalysis() {
 
-        String text = GetText.getTextFromUser();
+        String text = GetText.getPathFromUser();
         String result = algorithmStatistical(text, System.out);
         WriteText.startWriting(result);
     }
@@ -21,13 +21,11 @@ public class StatisticalAnalysis {
 
         char symbolInCode = GetMaxTimesSymbol(textFromUser);
 
-        int indexSymbolInAlpha = getIndexFromAlphabet(Alphabet.alphabetArray, symbolInCode);
-        int indexSpase = getIndexFromAlphabet(Alphabet.alphabetArray, ' ');
+        int indexSymbolInAlpha = getIndexFromAlphabet(Alphabet.LIKE_ARRAY, symbolInCode);
+        int indexSpase = getIndexFromAlphabet(Alphabet.LIKE_ARRAY, ' ');
 
         if (indexSymbolInAlpha == indexSpase) {
-            out.println("Это " + Color.RED + "не зашифрованный текст" + Color.RESET +
-                    ".Скорей всего, шифровка была не через эту программу. " +
-                    "проверьте текст (и свои навыки чтения) и возвращайтесь");
+            out.println("Это " + Color.RED + "не зашифрованный текст" + Color.RESET);
             System.exit(0);
         }
         int keyMinus = indexSpase - indexSymbolInAlpha;
@@ -46,8 +44,8 @@ public class StatisticalAnalysis {
 
     private static int getIndexFromAlphabet(char[] array, char symbol) {
         int index = 0;
-        for (int i = 0; i < Alphabet.alphabet.length(); i++) {
-            if (Alphabet.alphabetArray[i] == symbol) {
+        for (int i = 0; i < Alphabet.GET.length(); i++) {
+            if (Alphabet.LIKE_ARRAY[i] == symbol) {
                 index = i;
                 continue;
             }
