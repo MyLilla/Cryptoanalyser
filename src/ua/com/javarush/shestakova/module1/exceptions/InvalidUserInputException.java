@@ -5,8 +5,7 @@ public class InvalidUserInputException extends RuntimeException {
     public InvalidUserInputException (){
 
     }
-    public InvalidUserInputException (String massage) {
-        super (massage);
-        System.exit(0);
+    public InvalidUserInputException (String message) {
+        super (message);
     }
 }

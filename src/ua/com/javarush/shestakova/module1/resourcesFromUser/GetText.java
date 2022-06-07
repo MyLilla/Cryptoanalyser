@@ -11,48 +11,53 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.System.out;
+
 public class GetText {
 
-    public static String getPathFromUser() {
+    public static String startGetText() {
 
-        System.out.println("Введите полный адрес текстового документа : ");
+        Path wayToFile = getPathFromUser(out);
 
-        Scanner scanner = new Scanner(System.in);
-        String addressText = scanner.nextLine();
-        Path path = getWay(addressText, System.out);
-
-        String result = readOfText(path, System.out);
+        String result = readOfText(wayToFile, out);
 
         return result;
     }
+    public static Path getPathFromUser(PrintStream out) {
 
-    private static Path getWay(String addressText, PrintStream out) {
-        Path path = null;
+        out.println("Введите полный адрес текстового документа : ");
+
+        Scanner scanner = new Scanner(System.in);
+        String addressText = scanner.nextLine();
+
+        while (!checkPath(addressText, System.out)) {
+            addressText = scanner.nextLine();
+        }
+        Path path;
         try {
             path = Path.of(addressText);
-            checkPath(addressText, out, path);
         } catch (InvalidPathException e) {
-            out.println("Путь указан не верно. Проверьте файл и возвращайтесь.");
-            throw new InvalidUserInputException ("Incorrect way" + e);
-        }
+            throw new InvalidUserInputException("Incorrect path" + e.getMessage() + addressText);
+            }
         return path;
     }
 
-    private static void checkPath(String addressText, PrintStream out, Path path) {
-
-            if (addressText.isEmpty()) {
-                out.println("Имя файла " + Color.RED + "не может быть пустым" + Color.RESET);
-                throw new InvalidUserInputException("File name is empty");
-            }
-            if (Files.isDirectory(path)) {
-                out.println("Это " + Color.RED + "папка" + Color.RESET);
-                throw new InvalidUserInputException("File name is directory");
-            }
-            if (!(Files.exists(path))) {
-                out.println("Такого файла " + Color.RED + "не существует" + Color.RESET);
-               throw new InvalidUserInputException("Nt exist file");
-
-            }
+    private static boolean checkPath(String addressText, PrintStream out) {
+        boolean resultCheck = true;
+        Path path = Path.of(addressText);
+        if (addressText.isEmpty()) {
+            out.println("Имя файла " + Color.RED + "не может быть пустым" + Color.RESET);
+            return false;
+        }
+        else if (Files.isDirectory(path)) {
+            out.println("Это " + Color.RED + "папка" + Color.RESET);
+            return false;
+        }
+        if (!(Files.exists(path))) {
+            out.println("Такого файла " + Color.RED + "не существует" + Color.RESET);
+            return false;
+        }
+        return resultCheck;
     }
 
     public static String readOfText(Path path, PrintStream out) {
@@ -75,7 +80,6 @@ public class GetText {
         for (String x : list) {
             builderNewText.append(x);
         }
-        String result = builderNewText.toString().toLowerCase();
-        return result;
+        return builderNewText.toString().toLowerCase();
     }
 }

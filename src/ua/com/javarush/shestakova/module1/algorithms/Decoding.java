@@ -10,25 +10,25 @@ public class Decoding {
 
         int key = KeyService.getKey(System.out);
 
-        String text = GetText.getPathFromUser();
+        String text = GetText.startGetText();
 
-        String result = DecodeWithKey(text, key);
+        String result = decodeWithKey(text, key);
 
         WriteText.startWriting(result);
     }
 
-    public static String DecodeWithKey(String text, int key) {
+    public static String decodeWithKey(String text, int key) {
 
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < text.length(); i++) {
-            int index = Alphabet.GET.indexOf(text.charAt(i));
-            int stepBack = (index - key) % Alphabet.LENGTH;
+            int index = Alphabet.GET_OF_ALPHABET.indexOf(text.charAt(i));
+            int stepBack = (index - key) % Alphabet.LENGTH_OF_ALPHABET;
             if (stepBack < 0) {
-                char encoding = Alphabet.GET.charAt(Alphabet.LENGTH - Math.abs(stepBack));
+                char encoding = Alphabet.GET_OF_ALPHABET.charAt(Alphabet.LENGTH_OF_ALPHABET - Math.abs(stepBack));
                 result.append(encoding);
             } else {
-                char encoding = Alphabet.GET.charAt(stepBack);
+                char encoding = Alphabet.GET_OF_ALPHABET.charAt(stepBack);
                 result.append(encoding);
             }
         }

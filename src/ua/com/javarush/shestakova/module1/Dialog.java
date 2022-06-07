@@ -1,9 +1,9 @@
 package ua.com.javarush.shestakova.module1;
 
-import ua.com.javarush.shestakova.module1.algorithms.BruteForce;
+import ua.com.javarush.shestakova.module1.algorithms.decodingByBruteForce;
 import ua.com.javarush.shestakova.module1.algorithms.Coding;
 import ua.com.javarush.shestakova.module1.algorithms.Decoding;
-import ua.com.javarush.shestakova.module1.algorithms.StatisticalAnalysis;
+import ua.com.javarush.shestakova.module1.algorithms.decodingByStatisticalAnalysis;
 import ua.com.javarush.shestakova.module1.date.Color;
 import ua.com.javarush.shestakova.module1.exceptions.InvalidUserInputException;
 
@@ -12,8 +12,8 @@ import java.util.Scanner;
 
 public class Dialog {
 
-    public static String INPUT_KEY_FROM_USER = "Введите число ключа: ";
-    public static String SAVED_FILE = "Файл сохранен в указанной папке";
+    private static String INPUT_KEY_FROM_USER = "Введите число ключа: ";
+    private static String SAVED_FILE = "Файл сохранен в указанной папке";
     public static void welcome(PrintStream out) {
         try {
             out.println(Color.GREEN + "Что делать? \n" + Color.RESET);
@@ -54,11 +54,11 @@ public class Dialog {
                     out.println(SAVED_FILE);
                     break;
                 case 3:
-                    BruteForce.startBruteForce();
+                    decodingByBruteForce.startBruteForce();
                     out.println(SAVED_FILE);
                     break;
                 case 4:
-                    StatisticalAnalysis.startAnalysis();
+                    decodingByStatisticalAnalysis.startAnalysis();
                     out.println(SAVED_FILE);
                     break;
                 case 0:
@@ -68,7 +68,7 @@ public class Dialog {
 
         } catch (NumberFormatException e) {
             out.println("Это не " + Color.RED + "цифра" + Color.RESET);
-            throw new InvalidUserInputException("Not number" + e);
+            throw new InvalidUserInputException("Not number" + e.getMessage() + e);
         }
     }
 }

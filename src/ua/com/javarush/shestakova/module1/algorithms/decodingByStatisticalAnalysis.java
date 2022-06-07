@@ -2,17 +2,18 @@ package ua.com.javarush.shestakova.module1.algorithms;
 
 import ua.com.javarush.shestakova.module1.date.Alphabet;
 import ua.com.javarush.shestakova.module1.date.Color;
+import ua.com.javarush.shestakova.module1.exceptions.InvalidUserInputException;
 import ua.com.javarush.shestakova.module1.resourcesFromUser.GetText;
 import ua.com.javarush.shestakova.module1.resourcesFromUser.WriteText;
 
 import java.io.PrintStream;
 import java.util.*;
 
-public class StatisticalAnalysis {
+public class decodingByStatisticalAnalysis {
 
     public static void startAnalysis() {
 
-        String text = GetText.getPathFromUser();
+        String text = GetText.startGetText();
         String result = algorithmStatistical(text, System.out);
         WriteText.startWriting(result);
     }
@@ -21,22 +22,22 @@ public class StatisticalAnalysis {
 
         char symbolInCode = GetMaxTimesSymbol(textFromUser);
 
-        int indexSymbolInAlpha = getIndexFromAlphabet(Alphabet.LIKE_ARRAY, symbolInCode);
-        int indexSpase = getIndexFromAlphabet(Alphabet.LIKE_ARRAY, ' ');
+        int indexSymbolInAlpha = getIndexFromAlphabet(Alphabet.ALPHABET_ARRAY, symbolInCode);
+        int indexSpase = getIndexFromAlphabet(Alphabet.ALPHABET_ARRAY, ' ');
 
         if (indexSymbolInAlpha == indexSpase) {
             out.println("Это " + Color.RED + "не зашифрованный текст" + Color.RESET);
-            System.exit(0);
+            throw new InvalidUserInputException("The text is original");
         }
         int keyMinus = indexSpase - indexSymbolInAlpha;
         int keyPlus = indexSymbolInAlpha - indexSpase;
 
         String result = null;
-        if (BruteForce.checkForExit(Decoding.DecodeWithKey(textFromUser, keyPlus))) {
-            result = Decoding.DecodeWithKey(textFromUser, keyPlus);
+        if (decodingByBruteForce.checkForExit(Decoding.decodeWithKey(textFromUser, keyPlus))) {
+            result = Decoding.decodeWithKey(textFromUser, keyPlus);
             out.println("Ключь к коду = " + keyPlus);
-        } else if (BruteForce.checkForExit(Decoding.DecodeWithKey(textFromUser, keyMinus))) {
-            result = Decoding.DecodeWithKey(textFromUser, keyMinus);
+        } else if (decodingByBruteForce.checkForExit(Decoding.decodeWithKey(textFromUser, keyMinus))) {
+            result = Decoding.decodeWithKey(textFromUser, keyMinus);
             out.println("Ключь к коду = " + keyMinus);
         }
         return result;
@@ -44,8 +45,8 @@ public class StatisticalAnalysis {
 
     private static int getIndexFromAlphabet(char[] array, char symbol) {
         int index = 0;
-        for (int i = 0; i < Alphabet.GET.length(); i++) {
-            if (Alphabet.LIKE_ARRAY[i] == symbol) {
+        for (int i = 0; i < Alphabet.GET_OF_ALPHABET.length(); i++) {
+            if (Alphabet.ALPHABET_ARRAY[i] == symbol) {
                 index = i;
                 continue;
             }

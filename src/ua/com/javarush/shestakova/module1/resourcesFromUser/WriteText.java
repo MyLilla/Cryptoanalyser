@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import java.util.Scanner;
 
 public class WriteText {
-    public static final int MAX_LONG_NAME_FILE = 15;
+    private static final int MAX_LONG_NAME_FILE = 15;
     public static void startWriting(String result) {
 
         try {

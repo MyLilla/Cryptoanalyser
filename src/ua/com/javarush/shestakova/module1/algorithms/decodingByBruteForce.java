@@ -4,26 +4,30 @@ import ua.com.javarush.shestakova.module1.resourcesFromUser.GetText;
 import ua.com.javarush.shestakova.module1.resourcesFromUser.WriteText;
 import ua.com.javarush.shestakova.module1.date.Alphabet;
 
-public class BruteForce {
+import java.io.PrintStream;
+
+public class decodingByBruteForce {
+
+    private static final int MIM_OF_POPULAR_LETTERS = 5;
 
 
     public static void startBruteForce() {
 
-        String text = GetText.getPathFromUser();
+        String text = GetText.startGetText();
 
-        String textResult = algorithmBruteForce(text);
+        String textResult = algorithmBruteForce(text, System.out);
 
         WriteText.startWriting(textResult);
     }
 
-    private static String algorithmBruteForce(String text) {
-        for (int i = 0; i < Alphabet.LENGTH; i++) {
+    private static String algorithmBruteForce(String text, PrintStream out) {
+        for (int i = 0; i < Alphabet.LENGTH_OF_ALPHABET; i++) {
 
-            String testText = Decoding.DecodeWithKey(text, i);
+            String testText = Decoding.decodeWithKey(text, i);
             boolean resultTest = checkForExit(testText);
 
             if (resultTest) {
-                System.out.println("key = " + i);
+                out.println("key = " + i);
                 return testText;
             }
         }
@@ -39,10 +43,7 @@ public class BruteForce {
                 index++;
             }
         }
-        if (index >= 5) {
-            return true;
-        } else {
-            return false;
+        return index >= MIM_OF_POPULAR_LETTERS;
         }
     }
-}
+
