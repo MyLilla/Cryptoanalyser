@@ -6,7 +6,7 @@ import ua.com.javarush.shestakova.module1.date.Alphabet;
 
 import java.io.PrintStream;
 
-public class decodingByBruteForce {
+public class DecodingByBruteForce {
 
     private static final int MIM_OF_POPULAR_LETTERS = 5;
 

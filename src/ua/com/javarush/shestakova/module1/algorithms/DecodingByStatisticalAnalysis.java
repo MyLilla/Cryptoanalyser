@@ -9,7 +9,7 @@ import ua.com.javarush.shestakova.module1.resourcesFromUser.WriteText;
 import java.io.PrintStream;
 import java.util.*;
 
-public class decodingByStatisticalAnalysis {
+public class DecodingByStatisticalAnalysis {
 
     public static void startAnalysis() {
 
@@ -26,19 +26,19 @@ public class decodingByStatisticalAnalysis {
         int indexSpase = getIndexFromAlphabet(Alphabet.ALPHABET_ARRAY, ' ');
 
         if (indexSymbolInAlpha == indexSpase) {
-            out.println("Это " + Color.RED + "не зашифрованный текст" + Color.RESET);
+            out.println("It is " + Color.RED + "unencrypted text" + Color.RESET);
             throw new InvalidUserInputException("The text is original");
         }
         int keyMinus = indexSpase - indexSymbolInAlpha;
         int keyPlus = indexSymbolInAlpha - indexSpase;
 
         String result = null;
-        if (decodingByBruteForce.checkForExit(Decoding.decodeWithKey(textFromUser, keyPlus))) {
+        if (DecodingByBruteForce.checkForExit(Decoding.decodeWithKey(textFromUser, keyPlus))) {
             result = Decoding.decodeWithKey(textFromUser, keyPlus);
-            out.println("Ключь к коду = " + keyPlus);
-        } else if (decodingByBruteForce.checkForExit(Decoding.decodeWithKey(textFromUser, keyMinus))) {
+            out.println("Your KEY = " + keyPlus);
+        } else if (DecodingByBruteForce.checkForExit(Decoding.decodeWithKey(textFromUser, keyMinus))) {
             result = Decoding.decodeWithKey(textFromUser, keyMinus);
-            out.println("Ключь к коду = " + keyMinus);
+            out.println("Your KEY = " + keyMinus);
         }
         return result;
     }

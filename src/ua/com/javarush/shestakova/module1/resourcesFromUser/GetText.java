@@ -25,7 +25,7 @@ public class GetText {
     }
     public static Path getPathFromUser(PrintStream out) {
 
-        out.println("Введите полный адрес текстового документа : ");
+        out.println("Enter the full address of the text document: ");
 
         Scanner scanner = new Scanner(System.in);
         String addressText = scanner.nextLine();
@@ -46,15 +46,15 @@ public class GetText {
         boolean resultCheck = true;
         Path path = Path.of(addressText);
         if (addressText.isEmpty()) {
-            out.println("Имя файла " + Color.RED + "не может быть пустым" + Color.RESET);
+            out.println("Fie name " + Color.RED + "can't be empty" + Color.RESET);
             return false;
         }
         else if (Files.isDirectory(path)) {
-            out.println("Это " + Color.RED + "папка" + Color.RESET);
+            out.println("It is " + Color.RED + "folder" + Color.RESET);
             return false;
         }
         if (!(Files.exists(path))) {
-            out.println("Такого файла " + Color.RED + "не существует" + Color.RESET);
+            out.println("This file " + Color.RED + "doesn't exist" + Color.RESET);
             return false;
         }
         return resultCheck;
@@ -66,11 +66,11 @@ public class GetText {
         try {
             list = Files.readAllLines(path);
             if (list.isEmpty()) {
-                out.println("В указаном файле " + Color.RED + "нет данных" + Color.RESET);
+                out.println("There is " + Color.RED + "not text" + Color.RESET);
                 throw new FileProcessingException("File is empty" + path);
             }
             if (!(Files.isReadable(path))) {
-                out.println("Этот файл невозможно прочитать.");
+                out.println("This file cannot be read.");
                 throw new FileProcessingException("Can't read the file." + path);
             }
         } catch (IOException ex) {
