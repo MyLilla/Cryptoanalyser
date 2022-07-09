@@ -5,7 +5,5 @@ public class Main {
 
       Dialog.welcome(System.out);
 
-      // test2
-
     }
 }
