@@ -17,22 +17,25 @@ public class GetText {
 
     public static String startGetText() {
 
-        Path wayToFile = getPathFromUser(out);
+        System.out.println("Enter the full address of the text document: ");
+        String adress = getAddressFromUser();
+        Path wayToFile = getPathFromAddress(adress);
 
         String result = readOfText(wayToFile, out);
 
         return result;
     }
-    public static Path getPathFromUser(PrintStream out) {
 
-        out.println("Enter the full address of the text document: ");
-
+    public static String getAddressFromUser (){
         Scanner scanner = new Scanner(System.in);
         String addressText = scanner.nextLine();
-
-        while (!checkPath(addressText, System.out)) {
+        while (!checkAddress(addressText, System.out)) {
             addressText = scanner.nextLine();
         }
+        return addressText;
+    }
+    private static Path getPathFromAddress(String addressText) {
+
         Path path;
         try {
             path = Path.of(addressText);
@@ -42,7 +45,7 @@ public class GetText {
         return path;
     }
 
-    private static boolean checkPath(String addressText, PrintStream out) {
+    private static boolean checkAddress(String addressText, PrintStream out) {
         boolean resultCheck = true;
         Path path = Path.of(addressText);
         if (addressText.isEmpty()) {

@@ -12,9 +12,9 @@ import java.util.Scanner;
 
 public class Dialog {
 
-    private static String INPUT_KEY_FROM_USER = "Enter key number: ";
-    private static String SAVED_FILE = "The file is saved in the specified folder";
-    public static void welcome(PrintStream out) {
+    private final String INPUT_KEY_FROM_USER = "Enter key number: ";
+    private final String SAVED_FILE = "The file is saved in the specified folder";
+    public void welcome(PrintStream out) {
         try {
             out.println(Color.GREEN + "What do you want to do? \n" + Color.RESET);
             out.println("Encrypt text enter - 1");
@@ -29,23 +29,29 @@ public class Dialog {
         } catch (InterruptedException e) {
             throw new RuntimeException("Exception with sleep." + e);
         }
-        choiceOfOperation(System.out);
+        int numberFromUser = getNumberFromUser(out);
+        choiceOfOperation(numberFromUser, System.out);
     }
 
-    public static void choiceOfOperation(PrintStream out) {
-
+    public int getNumberFromUser(PrintStream out){
         Scanner scanner = new Scanner(System.in);
         try {
             int numberOfOperation = Integer.parseInt(scanner.nextLine());
-
             if (numberOfOperation > 4 || numberOfOperation < 0) {
                 out.println("The number must be " + Color.RED + "from 0 to 4" + Color.RESET);
-               throw new InvalidUserInputException ("Incorrect number");
+                throw new InvalidUserInputException ("Incorrect number");
             }
+            return numberOfOperation;
+        } catch (NumberFormatException e) {
+            out.println("It is not " + Color.RED + "number" + Color.RESET);
+            throw new InvalidUserInputException("Not number" + e.getMessage() + e);
+        }
+    }
+    private void choiceOfOperation(int numberOfOperation, PrintStream out) {
             switch (numberOfOperation) {
                 case 1:
                     out.println(INPUT_KEY_FROM_USER);
-                    Coding.startCoding();
+                    new Coding().startCoding();
                     out.println(SAVED_FILE);
                     break;
                 case 2:
@@ -63,12 +69,7 @@ public class Dialog {
                     break;
                 case 0:
                     out.println(Color.CYAN + "Ok");
-                    System.exit(0);
+                    break;
             }
-
-        } catch (NumberFormatException e) {
-            out.println("It is not " + Color.RED + "number" + Color.RESET);
-            throw new InvalidUserInputException("Not number" + e.getMessage() + e);
-        }
     }
 }
