@@ -9,8 +9,8 @@ import ua.com.javarush.shestakova.module1.date.Alphabet;
 import java.io.PrintStream;
 
 public class Coding {
-    private static final int MAX_KEY = Math.abs(100);
-    public static void startCoding() {
+    private final int MAX_KEY = Math.abs(100);
+    public void startCoding() {
 
         int key = KeyService.getKey(System.out);
         checkKeyForCoding(key, System.out);
@@ -20,7 +20,7 @@ public class Coding {
 
         WriteText.startWriting(result);
     }
-    private static void checkKeyForCoding(int key, PrintStream out) {
+    private void checkKeyForCoding(int key, PrintStream out) {
         boolean resultCheck = true;
         while (resultCheck) {
             if (Math.abs(key) > MAX_KEY) {
