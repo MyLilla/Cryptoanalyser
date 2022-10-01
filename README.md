@@ -13,11 +13,11 @@
 
 <h3><a>Сборка проекта: </a></h3>
 
-```$ cd Crypto2```
+```$ mvn package```
 
 <h3 ><a>Запуск проекта:</a></h3>
 
-```$ java -jar ./target/Crypto2.jar```
+```$ java -jar ./target/Cryptoanalyser-1.0-SNAPSHOT.jar```
 
 <h3 ><a>Дополнительно:</a></h3>
 
