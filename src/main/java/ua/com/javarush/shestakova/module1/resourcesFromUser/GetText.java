@@ -7,7 +7,6 @@ import ua.com.javarush.shestakova.module1.exceptions.InvalidUserInputException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,7 +25,7 @@ public class GetText {
         return result;
     }
 
-    public static String getAddressFromUser (){
+    public static String getAddressFromUser() {
         Scanner scanner = new Scanner(System.in);
         String addressText = scanner.nextLine();
         while (!checkAddress(addressText, System.out)) {
@@ -34,6 +33,7 @@ public class GetText {
         }
         return addressText;
     }
+
     private static Path getPathFromAddress(String addressText) {
 
         Path path;
@@ -41,7 +41,7 @@ public class GetText {
             path = Path.of(addressText);
         } catch (InvalidPathException e) {
             throw new InvalidUserInputException("Incorrect path" + e.getMessage() + addressText);
-            }
+        }
         return path;
     }
 
@@ -51,8 +51,7 @@ public class GetText {
         if (addressText.isEmpty()) {
             out.println("Fie name " + Color.RED + "can't be empty" + Color.RESET);
             return false;
-        }
-        else if (Files.isDirectory(path)) {
+        } else if (Files.isDirectory(path)) {
             out.println("It is " + Color.RED + "folder" + Color.RESET);
             return false;
         }
@@ -65,7 +64,7 @@ public class GetText {
 
     public static String readOfText(Path path, PrintStream out) {
 
-        List<String> list = new ArrayList<>();
+        List<String> list;
         try {
             list = Files.readAllLines(path);
             if (list.isEmpty()) {

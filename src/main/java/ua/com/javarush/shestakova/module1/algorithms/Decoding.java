@@ -6,7 +6,7 @@ import ua.com.javarush.shestakova.module1.resourcesFromUser.WriteText;
 import ua.com.javarush.shestakova.module1.date.Alphabet;
 
 public class Decoding {
-    public static void startDecoding() {
+    public void startDecoding() {
 
         int key = KeyService.getKey(System.out);
 

@@ -23,7 +23,7 @@ public class Dialog {
             Thread.sleep(100);
             out.println("Decrypt text using \"Brute Force\" enter - 3");
             Thread.sleep(100);
-            out.println("Decrypt text using \"Статистический анализ\" enter - 4");
+            out.println("Decrypt text using \"Statistical analysis\" enter - 4");
             Thread.sleep(100);
             out.println("for exit enter - 0");
         } catch (InterruptedException e) {
@@ -56,15 +56,15 @@ public class Dialog {
                     break;
                 case 2:
                     out.println(INPUT_KEY_FROM_USER);
-                    Decoding.startDecoding();
+                    new Decoding().startDecoding();
                     out.println(SAVED_FILE);
                     break;
                 case 3:
-                    DecodingByBruteForce.startBruteForce();
+                    new DecodingByBruteForce().startBruteForce();
                     out.println(SAVED_FILE);
                     break;
                 case 4:
-                    DecodingByStatisticalAnalysis.startAnalysis();
+                    new DecodingByStatisticalAnalysis().startAnalysis();
                     out.println(SAVED_FILE);
                     break;
                 case 0:

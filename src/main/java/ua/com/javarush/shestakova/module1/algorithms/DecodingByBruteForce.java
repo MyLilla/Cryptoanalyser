@@ -11,7 +11,7 @@ public class DecodingByBruteForce {
     private static final int MIM_OF_POPULAR_LETTERS = 5;
 
 
-    public static void startBruteForce() {
+    public void startBruteForce() {
 
         String text = GetText.startGetText();
 
@@ -20,7 +20,7 @@ public class DecodingByBruteForce {
         WriteText.startWriting(textResult);
     }
 
-    private static String algorithmBruteForce(String text, PrintStream out) {
+    private String algorithmBruteForce(String text, PrintStream out) {
         for (int i = 0; i < Alphabet.LENGTH_OF_ALPHABET; i++) {
 
             String testText = Decoding.decodeWithKey(text, i);

@@ -12,7 +12,8 @@ import java.nio.file.Path;
 import java.util.Scanner;
 
 public class WriteText {
-    private static final int MAX_LONG_NAME_FILE = 15;
+    private static final int MAX_LONG_NAME_FILE = 30;
+
     public static void startWriting(String result) {
 
         try {
@@ -24,24 +25,25 @@ public class WriteText {
                 file.close();
             }
         } catch (IOException e) {
-            System.out.println("Вы ввели не корректный путь. Возможно, файл с таким именем уже есть.");
-          throw new FileProcessingException("incorrect path" + e);
+            System.out.println("You input incorrect path. Maybe, file with this name is exist.");
+            throw new FileProcessingException("incorrect path" + e);
         }
     }
-    public static String getWayForWrite (PrintStream out) throws IOException {
 
-        out.println("Введите адрес папки, куда сохранить полученный файл: ");
+    public static String getWayForWrite(PrintStream out) throws IOException {
+
+        out.println("where do you want to save file, Input path to the directory: ");
 
         Scanner scanner = new Scanner(System.in);
         String WayDirectoryFromUser = scanner.nextLine();
 
         if (WayDirectoryFromUser.isEmpty()) {
-            out.println("Имя папки не может быть пустым. Проверьте файл и возвращайтесь");
+            out.println("File name can't be empty. Expect file and back");
             throw new InvalidUserInputException("Name is empty");
         }
         if ((WayDirectoryFromUser.equals("C:\\Windows") ||
                 WayDirectoryFromUser.equals("/etc"))) {
-            out.println("Запись в эту папку может повредить систему. Проверьте файл и возвращайтесь");
+            out.println("Writing in this directory can brake OS. Expect file and back");
             throw new InvalidUserInputException("Write in the system file");
         }
 
@@ -54,38 +56,40 @@ public class WriteText {
 
         return way;
     }
+
     private static void createDirectory(String pathUsers, PrintStream out) {
         try {
             Path wayToDirectory = Path.of(pathUsers);
 
             if (!Files.isDirectory(wayToDirectory)) {
-               out.println("Указанный путь не является папкой.");
+                out.println("This path is not directory");
                 throw new InvalidUserInputException("Not directory");
             }
         } catch (SecurityException ex) {
-            out.println("Доступ запрещен");
+            out.println("No access to this directory");
             throw new FileProcessingException("No access" + ex);
         }
     }
-    private static String getNewFileName (PrintStream out) {
+
+    private static String getNewFileName(PrintStream out) {
         Scanner scanner = new Scanner(System.in);
 
-       out.println("Введите имя нового файла: ");
+        out.println("Input name of new file: ");
         String nameFile = scanner.nextLine();
 
         if (nameFile.isEmpty()) {
-            out.println("Имя файла не может быть пустым.");
+            out.println("File name can't be empty.");
             throw new InvalidUserInputException("File name is empty");
         }
         if (nameFile.length() > MAX_LONG_NAME_FILE) {
-            out.println("Слишком много букв.");
+            out.println("Very much symbols.");
             throw new InvalidUserInputException("Very long file name");
 
         }
         if (nameFile.contains(".") ||
                 nameFile.contains(" ") ||
                 nameFile.contains("/")) {
-           out.println("Название не должно содержать пробелов и знаков припинания.");
+            out.println("File name can't contain spase and punctuation marks.");
             throw new InvalidUserInputException("File name have punctuation marks");
         }
         return nameFile;

@@ -10,6 +10,7 @@ import java.io.PrintStream;
 
 public class Coding {
     private final int MAX_KEY = Math.abs(100);
+
     public void startCoding() {
 
         int key = KeyService.getKey(System.out);
@@ -20,6 +21,7 @@ public class Coding {
 
         WriteText.startWriting(result);
     }
+
     private void checkKeyForCoding(int key, PrintStream out) {
         boolean resultCheck = true;
         while (resultCheck) {
@@ -30,6 +32,7 @@ public class Coding {
             resultCheck = false;
         }
     }
+
     public static String algorithmCodingWithKey(String text, int key) {
 
         StringBuilder result = new StringBuilder();
