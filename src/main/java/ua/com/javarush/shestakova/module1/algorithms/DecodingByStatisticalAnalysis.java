@@ -11,14 +11,14 @@ import java.util.*;
 
 public class DecodingByStatisticalAnalysis {
 
-    public static void startAnalysis() {
+    public void startAnalysis() {
 
         String text = GetText.startGetText();
         String result = algorithmStatistical(text, System.out);
         WriteText.startWriting(result);
     }
 
-    public static String algorithmStatistical(String textFromUser, PrintStream out) {
+    public String algorithmStatistical(String textFromUser, PrintStream out) {
 
         char symbolInCode = GetMaxTimesSymbol(textFromUser);
 
@@ -43,7 +43,7 @@ public class DecodingByStatisticalAnalysis {
         return result;
     }
 
-    private static int getIndexFromAlphabet(char[] array, char symbol) {
+    private int getIndexFromAlphabet(char[] array, char symbol) {
         int index = 0;
         for (int i = 0; i < Alphabet.GET_OF_ALPHABET.length(); i++) {
             if (Alphabet.ALPHABET_ARRAY[i] == symbol) {
@@ -54,7 +54,7 @@ public class DecodingByStatisticalAnalysis {
         return index;
     }
 
-    private static Character GetMaxTimesSymbol(String textFromUser) {
+    private Character GetMaxTimesSymbol(String textFromUser) {
 
         String[] arrayTextFromUser = textFromUser.split("");
 
@@ -78,6 +78,5 @@ public class DecodingByStatisticalAnalysis {
             }
         }
         return result;
-
     }
 }
