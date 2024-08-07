@@ -2,7 +2,7 @@
 
 <h2>Encryption and decryption of texts with the "Caesar Cipher".</h2>
 
-Final project first module "syntax" in studying JavaRush
+First project, module "syntax" in studying JavaRush
 
 <h3><a>Operations:</a></h3>
 
