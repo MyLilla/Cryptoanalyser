@@ -1,10 +1,10 @@
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?size=35&color=38C2FF&lines=Cryptoanalyser)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?size=35&color=38C2FF&lines=Caesar Cipher)](https://git.io/typing-svg)
 
-<h2>Encryption and decryption of texts with the "Caesar Cipher".</h2>
+<h2><a>Encryption and decryption of text</a></h2>
 
-First project, module "syntax" in studying JavaRush
+First project for JavaRush (module syntax) 
 
-<h3><a>Operations:</a></h3>
+<h3><a>About: </a></h3>
 
 * Encryption with a given key
 * Decryption with known key
@@ -12,50 +12,16 @@ First project, module "syntax" in studying JavaRush
 * Decryption by Statistical Analysis
 
 <h3><a>Build: </a></h3>
-
 ```$ mvn package```
 
 <h3 ><a>Launch:</a></h3>
-
 ```$ java -jar ./target/Cryptoanalyser-1.0-SNAPSHOT.jar```
 
-<h3 ><a>Additionally:</a></h3>
 
+<h3 ><a>Additionally:</a></h3>
 Used color highlighting with ANSI escape code
 It is possible to decrypt only those texts that was encrypted with this program.
 
-
-<h3 ><a>Description of classes</a></h3>
-
->Root package ```ua.com.javarush.shestakova.module1``` has classes:
-
-- ```Main``` - start point to app ```ua.com.javarush.shestakova.module1.Main```
-- ```Dialod``` - builds interface fot user (ua.com.javarush.shestakova.module1.Dialog)
-
->Package ```algorithms``` has general app's algorithms classes
-```ua.com.javarush.shestakova.module1.algorithms```
-
-- ```Coding``` - encrypting text
-- ```Decoding``` - decrypt text with key
-- ```Brute Force``` - decrypt the text using all possible keys.
-- ```StatisticalAnalysis``` - decrypt text based on
-- text analysis to search for a character that repeats the maximum number of times.
-
->Package ```resourcesFromUser``` has classes:
-- ```FileProcessingException``` 
-- ```GetKey``` - gets key from user and save it
-- ```GetText``` - gets link to the test's document from user and returns document's text
-- ```WriteText``` - gets directory path and name for new document from user, creates new document name.txt
-  and write into new text
-
->Package ```date``` has classes:
-
-- ```Alphabet```
-- ```Color```
-
->Package ```exceptions``` has class:
-
-- ```FileProcessingException``` 
 
 
 <h3><a>User interface</a></h3>
